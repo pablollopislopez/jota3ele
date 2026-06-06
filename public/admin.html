@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atelier — Administrador</title>
+  <title>Jota3ele — Administrador</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
   <div class="layout">
     <header class="header">
       <a href="/" class="header__logo">
-        <span class="header__logo-mark">A</span>
-        <span class="header__logo-text">Atelier</span>
+        <span class="header__logo-mark">J</span>
+        <span class="header__logo-text">Jota3ele</span>
       </a>
       <nav class="header__nav">
         <a href="/" class="header__link">Galería</a>
@@ -26,7 +26,7 @@
       <div id="login-view" class="admin-login">
         <div class="admin-login__card animate-fade-up">
           <div class="admin-login__icon">◈</div>
-          <h1 class="admin-login__title">Acceso al atelier</h1>
+          <h1 class="admin-login__title">Acceso a Jota3ele</h1>
           <p class="admin-login__subtitle">Introduce tu contraseña para gestionar la colección.</p>
           <form id="login-form" class="admin-login__form">
             <div class="field">
@@ -64,6 +64,21 @@
                 <div class="field">
                   <label for="title">Título *</label>
                   <input id="title" name="title" placeholder="Nombre de la obra" required />
+                </div>
+                <div class="field">
+                  <label for="style">Estilo</label>
+                  <input id="style" name="style" list="style-suggestions" placeholder="Ej: Abstracto, Paisaje, Retrato..." />
+                  <datalist id="style-suggestions">
+                    <option value="Abstracto"></option>
+                    <option value="Paisaje"></option>
+                    <option value="Retrato"></option>
+                    <option value="Urbano"></option>
+                    <option value="Naturaleza"></option>
+                    <option value="Figurativo"></option>
+                    <option value="Expresionismo"></option>
+                    <option value="Surrealismo"></option>
+                    <option value="Minimalista"></option>
+                  </datalist>
                 </div>
                 <div class="field-row">
                   <div class="field">

@@ -112,7 +112,7 @@ uploadForm.addEventListener('submit', async (e) => {
   }
 
   const formData = new FormData();
-  ['title', 'year', 'medium', 'dimensions', 'description'].forEach((field) => {
+  ['title', 'style', 'year', 'medium', 'dimensions', 'description'].forEach((field) => {
     formData.append(field, document.getElementById(field).value);
   });
   formData.append('image', selectedFile);
@@ -156,7 +156,7 @@ async function loadArtworks() {
         <img src="${a.imageUrl}" alt="${a.title}" class="admin-artwork__thumb" />
         <div class="admin-artwork__info">
           <h3>${a.title}</h3>
-          <p>${[a.year, a.medium].filter(Boolean).join(' · ')}</p>
+          <p>${[a.style, a.year, a.medium].filter(Boolean).join(' · ')}</p>
         </div>
         <button class="admin-artwork__delete" aria-label="Eliminar ${a.title}">×</button>
       </li>

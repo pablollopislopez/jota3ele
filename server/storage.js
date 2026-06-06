@@ -32,6 +32,7 @@ function mapCloudinaryResource(resource) {
     year: ctx.year || '',
     medium: ctx.medium || '',
     dimensions: ctx.dimensions || '',
+    style: ctx.style || '',
     imageUrl: resource.secure_url,
     createdAt: ctx.createdAt || resource.created_at,
   };
@@ -70,6 +71,7 @@ export function createLocalStorage(storageDir) {
         year: meta.year,
         medium: meta.medium,
         dimensions: meta.dimensions,
+        style: meta.style,
         imageUrl: `/uploads/${file.filename}`,
         createdAt: new Date().toISOString(),
       };
@@ -90,6 +92,7 @@ export function createLocalStorage(storageDir) {
         year: meta.year ?? artworks[index].year,
         medium: meta.medium ?? artworks[index].medium,
         dimensions: meta.dimensions ?? artworks[index].dimensions,
+        style: meta.style ?? artworks[index].style,
         updatedAt: new Date().toISOString(),
       };
       writeArtworks(artworks);
@@ -142,6 +145,7 @@ export function createCloudinaryStorage() {
           year: meta.year || '',
           medium: meta.medium || '',
           dimensions: meta.dimensions || '',
+          style: meta.style || '',
           createdAt,
         },
       });
@@ -153,6 +157,7 @@ export function createCloudinaryStorage() {
         year: meta.year || '',
         medium: meta.medium || '',
         dimensions: meta.dimensions || '',
+        style: meta.style || '',
         imageUrl: result.secure_url,
         createdAt,
       };
@@ -168,6 +173,7 @@ export function createCloudinaryStorage() {
           year: meta.year ?? artwork.year,
           medium: meta.medium ?? artwork.medium,
           dimensions: meta.dimensions ?? artwork.dimensions,
+          style: meta.style ?? artwork.style,
           createdAt: artwork.createdAt,
         },
         [artwork.publicId],
@@ -180,6 +186,7 @@ export function createCloudinaryStorage() {
         year: meta.year ?? artwork.year,
         medium: meta.medium ?? artwork.medium,
         dimensions: meta.dimensions ?? artwork.dimensions,
+        style: meta.style ?? artwork.style,
         updatedAt: new Date().toISOString(),
       };
     },

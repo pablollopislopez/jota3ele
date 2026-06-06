@@ -83,12 +83,28 @@ async function getHashedPassword() {
   return fs.readFileSync(hashFile, 'utf-8');
 }
 
-app.get('/api/artworks', async (_, res) => {
+app.get('/api/artworks', async (req, res) => {
   try {
-    res.json(await storage.listArtworks());
+    let artworks = await storage.listArtworks();
+    const style = req.query.style?.trim();
+    if (style) {
+      artworks = artworks.filter((a) => (a.style || '').toLowerCase() === style.toLowerCase());
+    }
+    res.json(artworks);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error al cargar obras' });
+  }
+});
+
+app.get('/api/styles', async (_, res) => {
+  try {
+    const artworks = await storage.listArtworks();
+    const styles = [...new Set(artworks.map((a) => a.style?.trim()).filter(Boolean))].sort();
+    res.json(styles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al cargar estilos' });
   }
 });
 
@@ -106,7 +122,7 @@ app.get('/api/artworks/:id', async (req, res) => {
 app.post('/api/artworks', authMiddleware, upload.single('image'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'Imagen requerida' });
 
-  const { title, description, year, medium, dimensions } = req.body;
+  const { title, description, year, medium, dimensions, style } = req.body;
   if (!title?.trim()) return res.status(400).json({ error: 'Título requerido' });
 
   try {
@@ -116,6 +132,7 @@ app.post('/api/artworks', authMiddleware, upload.single('image'), async (req, re
       year: year?.trim() || '',
       medium: medium?.trim() || '',
       dimensions: dimensions?.trim() || '',
+      style: style?.trim() || '',
     });
     res.status(201).json(artwork);
   } catch (err) {
@@ -125,7 +142,7 @@ app.post('/api/artworks', authMiddleware, upload.single('image'), async (req, re
 });
 
 app.put('/api/artworks/:id', authMiddleware, async (req, res) => {
-  const { title, description, year, medium, dimensions } = req.body;
+  const { title, description, year, medium, dimensions, style } = req.body;
   try {
     const artwork = await storage.updateArtwork(req.params.id, {
       title: title?.trim(),
@@ -133,6 +150,7 @@ app.put('/api/artworks/:id', authMiddleware, async (req, res) => {
       year: year?.trim(),
       medium: medium?.trim(),
       dimensions: dimensions?.trim(),
+      style: style?.trim(),
     });
     if (!artwork) return res.status(404).json({ error: 'Obra no encontrada' });
     res.json(artwork);
