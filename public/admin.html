@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atelier — Administrador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <header class="header">
+      <a href="/" class="header__logo">
+        <span class="header__logo-mark">A</span>
+        <span class="header__logo-text">Atelier</span>
+      </a>
+      <nav class="header__nav">
+        <a href="/" class="header__link">Galería</a>
+        <a href="/admin.html" class="header__link header__link--active">Administrador</a>
+      </nav>
+    </header>
+
+    <main class="main">
+      <div id="login-view" class="admin-login">
+        <div class="admin-login__card animate-fade-up">
+          <div class="admin-login__icon">◈</div>
+          <h1 class="admin-login__title">Acceso al atelier</h1>
+          <p class="admin-login__subtitle">Introduce tu contraseña para gestionar la colección.</p>
+          <form id="login-form" class="admin-login__form">
+            <div class="field">
+              <label for="password">Contraseña</label>
+              <input id="password" type="password" placeholder="••••••••" required autofocus />
+            </div>
+            <p id="login-error" class="error-msg" hidden></p>
+            <button type="submit" class="btn btn--primary" id="login-btn">Entrar</button>
+          </form>
+          <p class="admin-login__hint">Contraseña por defecto: <code>admin123</code></p>
+        </div>
+      </div>
+
+      <div id="admin-view" class="admin" hidden>
+        <div class="admin__header animate-fade-up">
+          <div>
+            <h1 class="admin__title">Panel de administración</h1>
+            <p class="admin__subtitle">Gestiona tu colección de pinturas</p>
+          </div>
+          <button id="logout-btn" class="btn btn--ghost">Cerrar sesión</button>
+        </div>
+
+        <div class="admin__grid">
+          <section class="admin__upload animate-fade-up" style="animation-delay:0.15s">
+            <h2 class="admin__section-title">Subir nueva obra</h2>
+            <form id="upload-form" class="upload-form">
+              <div class="upload-form__preview" id="preview-area">
+                <div class="upload-form__placeholder">
+                  <span>+</span>
+                  <p>Selecciona una imagen</p>
+                </div>
+                <input type="file" id="image-input" accept="image/jpeg,image/png,image/webp,image/gif" class="upload-form__file" />
+              </div>
+              <div class="upload-form__fields">
+                <div class="field">
+                  <label for="title">Título *</label>
+                  <input id="title" name="title" placeholder="Nombre de la obra" required />
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label for="year">Año</label>
+                    <input id="year" name="year" placeholder="2025" />
+                  </div>
+                  <div class="field">
+                    <label for="medium">Técnica</label>
+                    <input id="medium" name="medium" placeholder="Óleo sobre lienzo" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="dimensions">Dimensiones</label>
+                  <input id="dimensions" name="dimensions" placeholder="60 × 80 cm" />
+                </div>
+                <div class="field">
+                  <label for="description">Descripción</label>
+                  <textarea id="description" name="description" placeholder="Notas sobre la obra..." rows="3"></textarea>
+                </div>
+                <p id="upload-error" class="error-msg" hidden></p>
+                <p id="upload-success" class="success-msg" hidden>Obra subida correctamente</p>
+                <button type="submit" class="btn btn--primary" id="upload-btn">Publicar obra</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="admin__list animate-fade-up" style="animation-delay:0.3s">
+            <h2 class="admin__section-title">
+              Obras publicadas
+              <span class="admin__count" id="artwork-count">0</span>
+            </h2>
+            <p id="admin-empty" class="admin__empty">Aún no hay obras en la galería.</p>
+            <ul id="admin-list" class="admin-artworks" hidden></ul>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__line"></div>
+      <p class="footer__text">
+        Un espacio para contemplar el arte
+        <span class="footer__year" id="year"></span>
+      </p>
+    </footer>
+  </div>
+
+  <script src="/js/admin.js" type="module"></script>
+</body>
+</html>

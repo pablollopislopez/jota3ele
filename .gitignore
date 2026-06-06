@@ -1,0 +1,10 @@
+node_modules/
+dist/
+uploads/*
+!uploads/.gitkeep
+data/artworks.json
+data/.admin-hash
+data/uploads/
+.env
+*.log
+.DS_Store
